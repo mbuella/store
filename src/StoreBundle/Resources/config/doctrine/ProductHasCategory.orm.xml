@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="StoreBundle\Repository\ProductHasCategoryRepository" name="StoreBundle\Entity\ProductHasCategory">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="updatedAt" type="datetime" column="updated_at"/>
+    <many-to-one field="product" target-entity="Product" inversed-by="categories" />
+    <many-to-one field="category" target-entity="AppBundle\Entity\Classification\Category" />
+  </entity>
+</doctrine-mapping>

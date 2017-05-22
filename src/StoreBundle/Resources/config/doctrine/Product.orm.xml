@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="StoreBundle\Repository\ProductRepository" name="StoreBundle\Entity\Product">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" column="name" length="100"/>
+    <field name="description" type="text" column="description" nullable="true"/>
+    <field name="price" type="decimal" column="price" precision="10" scale="4"/>
+    <field name="quantity" type="decimal" column="quantity" precision="10" scale="4"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="updatedAt" type="datetime" column="updated_at"/>
+    <one-to-many field="categories" target-entity="ProductHasCategory" mapped-by="product" />
+  </entity>
+</doctrine-mapping>
