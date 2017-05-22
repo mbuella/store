@@ -198,5 +198,22 @@ class Product
     {
         return $this->updatedAt;
     }
+
+    /**
+     * Hook on pre-persist operations.
+     */
+    public function prePersist()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Hook on pre-update operations.
+     */
+    public function preUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    } 
 }
 
