@@ -5,3 +5,8 @@ store:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+#Admin area for Sonata
+admin_area:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+    prefix: /admin

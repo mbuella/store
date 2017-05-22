@@ -22,6 +22,10 @@ class ProductHasCategory
      */
     private $updatedAt;
 
+    private $product;
+
+    private $category;
+
 
     /**
      * Get id

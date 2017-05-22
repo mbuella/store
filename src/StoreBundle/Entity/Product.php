@@ -42,6 +42,8 @@ class Product
      */
     private $updatedAt;
 
+    private $categories;
+
 
     /**
      * Get id
