@@ -7,11 +7,7 @@ namespace StoreBundle\Entity;
  */
 class Product
 {
-    /**
-     * @var int
-     */
-    private $id;
-
+    
     /**
      * @var string
      */
@@ -42,17 +38,22 @@ class Product
      */
     private $updatedAt;
 
-    private $categories;
-
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
-     * Get id
-     *
-     * @return int
+     * @var \Doctrine\Common\Collections\Collection
      */
-    public function getId()
+    private $productHasCategories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        return $this->id;
+        $this->productHasCategories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -200,20 +201,56 @@ class Product
     }
 
     /**
-     * Hook on pre-persist operations.
+     * Get id
+     *
+     * @return integer
      */
-    public function prePersist()
+    public function getId()
     {
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
+        return $this->id;
     }
 
     /**
-     * Hook on pre-update operations.
+     * Add productHasCategory
+     *
+     * @param \StoreBundle\Entity\ProductHasCategory $productHasCategory
+     *
+     * @return Product
      */
+    public function addProductHasCategory(\StoreBundle\Entity\ProductHasCategory $productHasCategory)
+    {
+        $this->productHasCategories[] = $productHasCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove productHasCategory
+     *
+     * @param \StoreBundle\Entity\ProductHasCategory $productHasCategory
+     */
+    public function removeProductHasCategory(\StoreBundle\Entity\ProductHasCategory $productHasCategory)
+    {
+        $this->productHasCategories->removeElement($productHasCategory);
+    }
+
+    /**
+     * Get productHasCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductHasCategories()
+    {
+        return $this->productHasCategories;
+    }
+
+    public function prePersist()
+    {
+        // Add your code here
+    }
+    
     public function preUpdate()
     {
-        $this->updatedAt = new \DateTime();
-    } 
+        // Add your code here
+    }
 }
-

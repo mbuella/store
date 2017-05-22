@@ -12,7 +12,13 @@ class CategoryAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('name', 'text');
+        $formMapper
+            ->add('name', 'text')
+            ->add('_action', 'actions', array(
+                           'actions' => array(
+                               'edit' => array(),
+                           )
+                       ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

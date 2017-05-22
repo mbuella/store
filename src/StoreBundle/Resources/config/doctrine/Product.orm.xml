@@ -10,7 +10,7 @@
     <field name="quantity" type="decimal" column="quantity" precision="10" scale="4"/>
     <field name="createdAt" type="datetime" column="created_at"/>
     <field name="updatedAt" type="datetime" column="updated_at"/>
-    <one-to-many field="categories" target-entity="ProductHasCategory" mapped-by="product" />
+    <one-to-many field="productHasCategories" target-entity="ProductHasCategory" mapped-by="product" />
     <lifecycle-callbacks>
       <lifecycle-callback type="prePersist" method="prePersist" />
       <lifecycle-callback type="preUpdate" method="preUpdate" />

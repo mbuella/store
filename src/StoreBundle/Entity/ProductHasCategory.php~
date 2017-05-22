@@ -1,0 +1,13 @@
+<?php
+
+namespace StoreBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * ProductHasCategory
+ */
+class ProductHasCategory
+{
+}
+

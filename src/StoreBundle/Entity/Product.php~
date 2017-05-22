@@ -1,0 +1,11 @@
+<?php
+
+namespace StoreBundle\Entity;
+
+/**
+ * Product
+ */
+class Product
+{
+    
+}

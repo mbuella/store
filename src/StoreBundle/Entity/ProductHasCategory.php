@@ -2,16 +2,13 @@
 
 namespace StoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * ProductHasCategory
  */
 class ProductHasCategory
 {
-    /**
-     * @var int
-     */
-    private $id;
-
     /**
      * @var \DateTime
      */
@@ -22,20 +19,21 @@ class ProductHasCategory
      */
     private $updatedAt;
 
-    private $product;
-
-    private $category;
-
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
-     * Get id
-     *
-     * @return int
+     * @var \StoreBundle\Entity\Product
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $product;
+
+    /**
+     * @var \AppBundle\Entity\Classification\Category
+     */
+    private $category;
+
 
     /**
      * Set createdAt
@@ -84,5 +82,80 @@ class ProductHasCategory
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set product
+     *
+     * @param \StoreBundle\Entity\Product $product
+     *
+     * @return ProductHasCategory
+     */
+    public function setProduct(\StoreBundle\Entity\Product $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \StoreBundle\Entity\Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Classification\Category $category
+     *
+     * @return ProductHasCategory
+     */
+    public function setCategory(\AppBundle\Entity\Classification\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Classification\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        // Add your code here
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        // Add your code here
+        $this->updatedAt = new \DateTime();
+    }
+}

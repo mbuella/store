@@ -35,7 +35,7 @@ class ProductAdmin extends Admin
                    // add custom action links
                    ->add('_action', 'actions', array(
                        'actions' => array(
-                           'show' => array(),
+                           // 'show' => array(),
                            'edit' => array(),
                        )
                    ));

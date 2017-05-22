@@ -8,5 +8,9 @@
     <field name="updatedAt" type="datetime" column="updated_at"/>
     <many-to-one field="product" target-entity="Product" inversed-by="categories" />
     <many-to-one field="category" target-entity="AppBundle\Entity\Classification\Category" />
+    <lifecycle-callbacks>
+      <lifecycle-callback type="prePersist" method="prePersist" />
+      <lifecycle-callback type="preUpdate" method="preUpdate" />
+    </lifecycle-callbacks> 
   </entity>
 </doctrine-mapping>
