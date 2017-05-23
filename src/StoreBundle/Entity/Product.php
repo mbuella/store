@@ -219,6 +219,7 @@ class Product
      */
     public function addProductHasCategory(\StoreBundle\Entity\ProductHasCategory $productHasCategory)
     {
+        $productHasCategory->setProduct($this);
         $this->productHasCategories[] = $productHasCategory;
 
         return $this;
@@ -231,6 +232,7 @@ class Product
      */
     public function removeProductHasCategory(\StoreBundle\Entity\ProductHasCategory $productHasCategory)
     {
+        $productHasCategory->setProduct(null);
         $this->productHasCategories->removeElement($productHasCategory);
     }
 
@@ -247,10 +249,18 @@ class Product
     public function prePersist()
     {
         // Add your code here
+        $this->createdAt = new \DateTime;
+        $this->updatedAt = new \DateTime;
+
     }
     
     public function preUpdate()
     {
         // Add your code here
+        $this->updatedAt = new \DateTime;
+    }
+    
+    public function __toString() {
+        return $this->name ? $this->name : 'new';
     }
 }
