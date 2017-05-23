@@ -12,10 +12,17 @@ class ProductAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('name', 'text')
-                   ->add('description', 'text')
-                   ->add('price', 'integer')
-                   ->add('quantity', 'integer');         
+        $formMapper->tab('Product')
+                       ->add('name','text')
+                       ->add('description', 'text')
+                       ->add('price', 'integer')
+                       ->add('quantity', 'integer')
+                       ->end()
+                   ->end()         
+                    // add new tab for category
+                   ->tab('Categories')
+                        // ...
+                   ->end();         
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
