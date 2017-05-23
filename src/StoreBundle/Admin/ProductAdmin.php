@@ -21,7 +21,15 @@ class ProductAdmin extends Admin
                    ->end()         
                     // add new tab for category
                    ->tab('Categories')
-                        // ...
+                ->add('productHasCategories', 'sonata_type_collection', 
+                                    array('required' => false,
+                                          //'cascade_validation' => true,
+                                          'by_reference' => false),
+                                    array('edit' => 'inline',
+                                          'inline' => 'table',
+                                          'sortable' => 'position',
+                                          'admin_code' => 'admin.product_has_category')) 
+                       ->end()
                    ->end();         
     }
 

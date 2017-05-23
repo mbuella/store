@@ -140,9 +140,7 @@ class ProductHasCategory
     {
         return $this->category;
     }
-    /**
-     * @ORM\PrePersist
-     */
+    
     public function prePersist()
     {
         // Add your code here
@@ -150,9 +148,7 @@ class ProductHasCategory
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * @ORM\PreUpdate
-     */
+
     public function preUpdate()
     {
         // Add your code here

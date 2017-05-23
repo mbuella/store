@@ -13,13 +13,13 @@ class ProductHasCategoryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-          ->add('product', 'sonata_type_model', array(
-            'class' => 'StoreBundle\Entity\Product',
-            'property' => 'name',
-          ))
+          //->add('product', 'sonata_type_model', array(
+            //'class' => 'StoreBundle\Entity\Product',
+            //'property' => 'name',
+          //))
           ->add('category', 'sonata_type_model', array(
-            'class' => 'AppBundle\Entity\Classification\Category',
-            'property' => 'name',
+            //'class' => 'AppBundle\Entity\Classification\Category',
+            //'property' => 'name',
           ));         
     }
 
