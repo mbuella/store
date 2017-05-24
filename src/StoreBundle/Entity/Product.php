@@ -48,6 +48,8 @@ class Product
      */
     private $productHasCategories;
 
+    private $total;
+
     /**
      * Constructor
      */
@@ -244,6 +246,11 @@ class Product
     public function getProductHasCategories()
     {
         return $this->productHasCategories;
+    }
+
+    public function getTotal()
+    {
+        return $this->price * $this->quantity;
     }
 
     public function prePersist()

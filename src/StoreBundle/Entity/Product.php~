@@ -48,6 +48,8 @@ class Product
      */
     private $productHasCategories;
 
+    private $total;
+
     /**
      * Constructor
      */
@@ -219,6 +221,7 @@ class Product
      */
     public function addProductHasCategory(\StoreBundle\Entity\ProductHasCategory $productHasCategory)
     {
+        $productHasCategory->setProduct($this);
         $this->productHasCategories[] = $productHasCategory;
 
         return $this;
@@ -231,6 +234,7 @@ class Product
      */
     public function removeProductHasCategory(\StoreBundle\Entity\ProductHasCategory $productHasCategory)
     {
+        $productHasCategory->setProduct(null);
         $this->productHasCategories->removeElement($productHasCategory);
     }
 

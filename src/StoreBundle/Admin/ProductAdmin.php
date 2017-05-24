@@ -53,20 +53,21 @@ class ProductAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('name')
-                       ->add('price')
-                       ->add('quantity');   
+        $datagridMapper->add('name');   
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name')
+        $listMapper->addIdentifier('name', null, array(
+                         'route' => array(
+                             'name' => 'show'
+                         )
+                     ))
                    ->add('description')
 
                    // add custom action links
                    ->add('_action', 'actions', array(
                        'actions' => array(
-                           'show' => array(),
                            'edit' => array(),
                        )
                    ));
@@ -81,6 +82,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('productHasCategories', null, array('label' => 'Categories'))
             ->add('price')
             ->add('quantity')
+            ->add('total')
             ->add('createdAt', null, array('label' => 'Date Created'))
             ->add('updatedAt', null, array('label' => 'Last Update'))
         ;
@@ -88,7 +90,7 @@ class ProductAdmin extends AbstractAdmin
 
     public function getExportFields()
     {
-        return array('id','name', 'description', 'price', 'quantity', 'createdAt', 'updatedAt');
+        return array('id','name', 'description', 'price', 'quantity', 'total', 'createdAt', 'updatedAt');
     }
 
     public function getExportFormats()

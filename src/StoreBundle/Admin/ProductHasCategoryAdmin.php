@@ -36,13 +36,16 @@ class ProductHasCategoryAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('product.name')
-                      ->add('category.name')
+        $listMapper->addIdentifier('product.name', null, array(
+                       'route' => array(
+                           'name' => 'show'
+                       )
+                   ))
+                   ->add('category.name')
 
                    // add custom action links
                    ->add('_action', 'actions', array(
                        'actions' => array(
-                           'show' => array(),
                            'edit' => array()
                        )
                    ));
