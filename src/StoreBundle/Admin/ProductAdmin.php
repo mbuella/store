@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\CoreBundle\Validator\ErrorElement;
+
 
 
 class ProductAdmin extends AbstractAdmin
@@ -95,4 +97,34 @@ class ProductAdmin extends AbstractAdmin
     {
         return array('json', 'xml', 'csv');
     }
+
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+            ->with('name')
+                ->assertRequired()
+                ->assertLength(array(
+                    'min' => 5,
+                    'max' => 100
+                ))
+            ->end()
+            ->with('description')
+                ->assertRequired()
+                ->assertLength(array(
+                    'min' => 5,
+                    'max' => 500
+                ))
+            ->end()
+            ->with('price')
+                ->assertRequired()
+                ->assertType(['type'=>"numeric"])
+            ->end()
+            ->with('quantity')
+                ->assertRequired()
+                ->assertType(['type'=>"numeric"])
+                ->assertGreaterThan(['value'=>0])
+            ->end()
+        ;
+    }
+
 }

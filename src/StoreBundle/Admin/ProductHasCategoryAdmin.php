@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\CoreBundle\Validator\ErrorElement;
 
 class ProductHasCategoryAdmin extends AbstractAdmin
 {
@@ -71,5 +72,17 @@ class ProductHasCategoryAdmin extends AbstractAdmin
     public function getExportFormats()
     {
         return array('json', 'xml', 'csv');
+    }
+
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        $errorElement
+            ->with('product.id')
+                ->assertRequired()
+            ->end()
+            ->with('category.id')
+                ->assertRequired()
+            ->end()
+        ;
     }
 }

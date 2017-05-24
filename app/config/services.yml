@@ -12,16 +12,25 @@ services:
       class: StoreBundle\Admin\ProductAdmin
       arguments: [~, StoreBundle\Entity\Product, ~]
       tags:
-          - { name: sonata.admin, manager_type: orm, label: Product }
+          - name: sonata.admin
+            manager_type: orm
+            group: "Store"
+            label: "Product"
 
     admin.product_has_category:
       class: StoreBundle\Admin\ProductHasCategoryAdmin
       arguments: [~, StoreBundle\Entity\ProductHasCategory, ~]
       tags:
-          - { name: 'sonata.admin', manager_type: orm, label: 'Product Category', show_in_dashboard: "false"  }
+          - name: sonata.admin
+            manager_type: orm
+            group: "Store"
+            label: "Product Categories"
 
-    admin.category:
-      class: AppBundle\Admin\CategoryAdmin
-      arguments: [~, AppBundle\Entity\Classification\Category, ~]
-      tags:
-          - { name: sonata.admin, manager_type: orm, label: Product Categories }
+    # admin.category:
+    #   class: AppBundle\Admin\CategoryAdmin
+    #   arguments: [~, AppBundle\Entity\Classification\Category, ~]
+    #   tags:
+    #       - name: sonata.admin
+    #         manager_type: orm
+    #         group: "Store"
+    #         label: "Product Categories"
