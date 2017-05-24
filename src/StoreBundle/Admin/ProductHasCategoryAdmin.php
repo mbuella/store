@@ -15,14 +15,10 @@ class ProductHasCategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-          /*->add('product', 'sonata_type_model', array(
-            'class' => 'StoreBundle\Entity\Product',
-            'property' => 'name',
-          ))*/
           ->add('category', 'entity', array(
             'class' => 'AppBundle\Entity\Classification\Category',
             'choice_label' => 'name',
-          ));         
+          ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

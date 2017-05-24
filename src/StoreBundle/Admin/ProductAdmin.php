@@ -19,8 +19,8 @@ class ProductAdmin extends AbstractAdmin
         $formMapper->tab('Product')
                        ->add('name','text')
                        ->add('description', 'text')
-                       ->add('price', 'integer')
-                       ->add('quantity', 'integer')
+                       ->add('price')
+                       ->add('quantity')
                        ->end()
                    ->end()         
                     // add new tab for category
@@ -62,8 +62,6 @@ class ProductAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('name')
                    ->add('description')
-                   // ->add('price')
-                   // ->add('quantity')
 
                    // add custom action links
                    ->add('_action', 'actions', array(
