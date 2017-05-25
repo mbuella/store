@@ -17,7 +17,9 @@ class ProductAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->tab('Product')
-                       ->add('name','text')
+                       ->add('name','text', array(
+                            'help' => 'Indicate the name of your product.'
+                        ))
                        ->add('description', 'text')
                        ->add('price')
                        ->add('quantity')
@@ -36,7 +38,7 @@ class ProductAdmin extends AbstractAdmin
                                     // In that case, you need to fill in the options as well
                                     'type_options' => array(
                                         'mapped'   => true,
-                                        'required' => false,
+                                        'required' => true,
                                     )
                                 )
                             )
@@ -53,7 +55,8 @@ class ProductAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('name');   
+        $datagridMapper->add('name')
+                       ->add('createdAt','doctrine_orm_date_range');   
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -78,13 +81,26 @@ class ProductAdmin extends AbstractAdmin
         $showMapper
             ->add('id', null, array('label' => 'ID'))
             ->add('name')
-            ->add('description')
-            ->add('productHasCategories', null, array('label' => 'Categories'))
-            ->add('price')
-            ->add('quantity')
-            ->add('total')
-            ->add('createdAt', null, array('label' => 'Date Created'))
-            ->add('updatedAt', null, array('label' => 'Last Update'))
+            ->add('description','string')
+            ->add('productHasCategories', null, array(
+                'template' => 'StoreBundle:Admin:producthascategories.html.twig',
+                'label' => 'Categories'
+              ))
+            ->add('price', 'currency', array(
+                'currency' => '$'
+              ))
+            ->add('quantity', 'number')
+            ->add('total', 'currency', array(
+                'currency' => '$'
+              ))
+            ->add('createdAt', null, array(
+                'format' => 'F j, Y',
+                'label' => 'Date Created'
+              ))
+            ->add('updatedAt', null, array(
+                'format' => 'F j, Y',
+                'label' => 'Last Update'
+              ))
         ;
     } 
 
@@ -124,7 +140,12 @@ class ProductAdmin extends AbstractAdmin
                 ->assertType(['type'=>"numeric"])
                 ->assertGreaterThan(['value'=>0])
             ->end()
-        ;
+            ->with('productHasCategories')
+                ->assertCount(array(
+                  'min' => 1,
+                  'minMessage' => 'This product should contain one category or more.'
+                ))
+            ->end();
     }
 
 }

@@ -248,6 +248,11 @@ class Product
         return $this->productHasCategories;
     }
 
+    public function getTotal()
+    {
+        return $this->price * $this->quantity;
+    }
+
     public function prePersist()
     {
         // Add your code here

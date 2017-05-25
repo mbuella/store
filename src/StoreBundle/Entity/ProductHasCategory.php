@@ -156,6 +156,6 @@ class ProductHasCategory
     }
 
     public function __toString() {
-        return $this->category ? $this->category->getName() : 'new';
+        return $this->product ? $this->product->getName() : 'new';
     }
 }

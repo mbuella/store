@@ -6,7 +6,7 @@ imports:
     # - { resource: "@AppBundle/Resources/config/admin.xml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+# http://symfony.com/doc/current/best_pfractices/configuration.html#application-related-configuration
 parameters:
     locale: en
 
@@ -78,6 +78,27 @@ swiftmailer:
 sonata_block:
     default_contexts: [cms]
     blocks:
+        sonata.admin.block.search_result:
+            contexts: [admin]
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+        sonata.block.service.text:
+
+sonata_admin:
+    show_mosaic_button: false
+    templates:
+        # other configuration options
+        search:              SonataAdminBundle:Core:search.html.twig
+        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Welcome to my Store</h2>
