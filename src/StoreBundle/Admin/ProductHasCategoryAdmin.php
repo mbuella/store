@@ -84,7 +84,4 @@ class ProductHasCategoryAdmin extends AbstractAdmin
             ->end()
         ;
     }
-
-    public function postRemove($productHasCategory)
-    {}
 }

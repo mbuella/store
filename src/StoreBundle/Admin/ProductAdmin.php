@@ -123,6 +123,11 @@ class ProductAdmin extends AbstractAdmin
                     'min' => 5,
                     'max' => 100
                 ))
+                ->assertRegex(array(
+                    // match alphanum and spaces
+                    'pattern' => "/^[\w\s]+$/",
+                    'message' => "Product name must have numbers, letters and spaces only!"
+                ))
             ->end()
             ->with('description')
                 ->assertRequired()
